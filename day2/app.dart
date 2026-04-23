@@ -75,4 +75,48 @@ void main() {
   double balance = 500;
   bool canPay = balance >= 300;
   print(canPay);
+
+  //Logical Operators - && (AND) , || (OR) , ! (NOT)
+  // && When Both Condition is True Then Only The Output is True
+
+  bool isLoggedIn = true;
+
+  bool hasSubscription = false;
+
+  bool canWatchMovie = isLoggedIn && hasSubscription;
+  print(canWatchMovie);
+
+  bool isAdmin = true;
+  bool isModerator = true;
+
+  bool canDelete = isAdmin && isModerator;
+  print(canDelete);
+
+  // || _ even if one condition is True Then Output is True
+
+  bool isAdmi = true;
+  bool isModerato = false;
+
+  bool canDelet = isAdmi || isModerato;
+  print(canDelet);
+
+  //Assigment Operator - Assign a Value - =
+  int scr = 10;
+  scr += 5;
+  print(scr);
+
+  //Ternary Operator - Decision in one line
+  //
+  bool login = true;
+
+  String message = login ? "Weclome" : "Please Login";
+  print(message);
+
+  //Null-aware Operator ??
+  //Used When data may be emppty
+
+  String? namee;
+
+  String displayName = namee ?? "Guest";
+  print(displayName);
 }

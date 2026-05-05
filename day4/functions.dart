@@ -3,7 +3,9 @@ void main() {
 
   //1. function - ()
   void sayHello() {
+    //Body - Instructions to perform the task
     print("Hello User");
+
   }
 
   sayHello(); //Call the function by the name
@@ -15,6 +17,7 @@ void main() {
   }
 
   greetUser("Advika");
+
 
   //3. Function with Return Value/Type
 

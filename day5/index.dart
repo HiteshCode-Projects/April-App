@@ -6,6 +6,8 @@ void main() {
     {"name": "Bob", "course": "Web", "idNo": 9887},
 
     {"name": "Charlie", "course": "AI", "idNo": 3478},
+
+    {"name": "Charlie", "course": "AI", "idNo": 3478},
   ];
 
   //Access The Data

@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'home_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -13,21 +16,33 @@ class _AuthScreenState extends State<AuthScreen> {
 
   //Authentication
   final auth = FirebaseAuth.instance;
+  final firestore = FirebaseFirestore.instance;
 
   //SIGNUP- User Creates The Account - Register
   void signUp() async {
     try {
       //Email and Password
 
-      await auth.createUserWithEmailAndPassword(
+  UserCredential user  =    await auth.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
       print("User Created");
 
+      //Save User Details In Firestore-Database
+      await firestore.collection('users').doc(user.user!.uid).set({
+        //key:value
+        'email': emailController.text,
+        'createdAt': Timestamp.now(),
+      });
+
+      //Going To New Screen/Home Screen
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomeScreen()),);
     } catch (error) {
       print(error);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(error.toString())));
     }
   }
 
@@ -41,11 +56,17 @@ class _AuthScreenState extends State<AuthScreen> {
         email: emailController.text,
         password: passwordController.text,
       );
-      
-      print("User Logged In");
-    } catch (error) {
+
+
+      //Going To Next Screen
+      Navigator.push(context, MaterialPageRoute(builder: (_) => HomeScreen()),);
+
+
+    }  catch (error) {
       print(error);
-       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(error.toString())));
     }
   }
 
